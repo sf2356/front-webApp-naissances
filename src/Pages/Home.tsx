@@ -1,6 +1,4 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
-
 function Home() {
   return (
     <div className="navbar bg-base-100 shadow-sm">
@@ -14,11 +12,10 @@ function Home() {
       <li><Link to="/private/declaration">Declarations</Link></li>
       <li><a>Contact</a></li>
       <li><a>Connexion</a></li>
-
     </ul>
   </div>
 </div>
   )
 }
 
-export default Home
+export default Home;

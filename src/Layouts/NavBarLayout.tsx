@@ -1,4 +1,5 @@
 import { Menu } from 'lucide-react'
+import React from 'react'
 
 function NavBarLayout() {
   return (

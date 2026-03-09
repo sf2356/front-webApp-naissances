@@ -6,19 +6,19 @@ function PrivateLayouts() {
     <div>
 
       <div className="drawer lg:drawer-open">
-  <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-  <div className="drawer-content">
-    {/* Navbar */}
-    <NavBarLayout />
-    {/* Page content here */}
-    <div className="p-4">Page Content</div>
-  </div>
-<SidebarLayout />
-</div>
-  <Outlet />
+        <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content">
+          {/* Navbar */}
+          <NavBarLayout />
+          <main>
+            <Outlet />
+          </main>
+        </div>
+        <SidebarLayout />
+      </div>
     </div>
 
   )
 }
 
-export default PrivateLayouts;
+export default PrivateLayouts
