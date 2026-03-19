@@ -1,13 +1,15 @@
 import type { Declaration } from '@/types_data/Declaration';
 import DeclarationItem from './DeclarationItem';
+import { BiSort } from 'react-icons/bi';
 
 type Props={
     declarations: Declaration[]
+    sortBystatus:()=> void
 }
 
 function Declarations(props: Props) {
     //Destructuration des declarations passées en props
-    const { declarations } = props;
+    const { declarations,sortBystatus } = props;
   return (
     <>
      <article className='grid grid-cols-12 align-center p-4 font-bold'>
@@ -19,7 +21,7 @@ function Declarations(props: Props) {
              DATE NAISSANCE
             </span>
             <span className='p-2'>
-             HOPITAL
+             HOPITAL   
             </span>
             <span className='p-2 col-span-2'>
               PARENT 1
@@ -27,7 +29,11 @@ function Declarations(props: Props) {
             <span className='p-2 col-span-2'>
               PARENT 2
             </span>
-            <span className='p-2'>STATUS</span>
+            <button type="button" 
+            onClick={()=>sortBystatus()}
+            className='p-2 flex flex-row justify-center items-center cursor-pointer'>STATUS
+                <BiSort className='ml-2' />
+            </button>
             <span className='p-2 col-span-2 flex flex-col text-center'>ACTION</span>
           </article>
       {

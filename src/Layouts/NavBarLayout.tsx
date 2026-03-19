@@ -1,4 +1,4 @@
-import { Menu } from 'lucide-react'
+import { TfiMenu } from "react-icons/tfi";
 import React from 'react'
 
 function NavBarLayout() {
@@ -6,8 +6,8 @@ function NavBarLayout() {
     <nav className="navbar w-full bg-base-300 ">
       <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost">
         {/* Sidebar toggle icon */}
-        <Menu />
-      </label>
+        <TfiMenu/>
+    </label>
       <div className="flex-1">
         <a className="px-4 text-lg font-bold text-primary">LES NOUVELLES VIES</a>
       </div>
