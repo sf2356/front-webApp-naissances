@@ -8,11 +8,11 @@ import Declarations from '@/components/Declarations/Declarations';
 function DeclarationPage() {
 
   //Utilisation du hook personnalisé pour récupérer les declarations
-    const {declarations,sortByStatus} = useDeclaration();
+    const {declarations,sortByStatus,sortByDate} = useDeclaration();
   return (
     <div className='border border-blue'>
       {/* Recuperations des declarations pour affichage  */}
-    <Declarations declarations={declarations} sortBystatus={sortByStatus}  />
+    <Declarations declarations={declarations} sortBystatus={sortByStatus} sortByDate={sortByDate} />
       </div>
   )
 }

@@ -7,6 +7,7 @@ function useDeclaration() {
   const [declarations, setDeclarations] = useState<Declaration[]>([]);
   //Declaration du uestate pour le trie à l'inverse des declarations
   const [orderStatus, setOrderStatus] = useState(1);
+  const [orderDate, setOrderDate] = useState(1);
 
   //Creation de la methode sortByStatus
 
@@ -30,8 +31,27 @@ function useDeclaration() {
 
     //On eclate le contenu de la destructuration
     setDeclarations([...sortDeclaration]);
+  };
 
-    console.log("bonjour à tous ");
+  const sortByDate = () => {
+    const sortDeclaration = declarations.sort(
+      (itemOne: Declaration, itemTwo: Declaration) => {
+        const { registered: itemDateOne } = itemOne;
+        const { registered: itemDateTwo } = itemTwo;
+
+        const jsDateOneFormat = itemDateOne.split(" ")[0];
+        const jsDateTwoFormat = itemDateTwo.split(" ")[0];
+
+        let result =
+          new Date(jsDateOneFormat).getTime() -
+          new Date(jsDateTwoFormat).getTime();
+        setOrderDate(orderDate * -1);
+        return result * orderDate;
+      },
+    );
+
+    //On eclate le contenu de la destructuration
+    setDeclarations([...sortDeclaration]);
   };
 
   //Recuperation des declarations depuis le backend (simulee ici avec un useEffect et une fonction de mock)
@@ -42,7 +62,7 @@ function useDeclaration() {
   useEffect(() => {
     fetchDeclarations();
   }, []);
-  return { declarations, sortByStatus };
+  return { declarations, sortByStatus, sortByDate };
 }
 
 export { useDeclaration };
