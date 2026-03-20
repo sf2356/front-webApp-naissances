@@ -1,13 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Declaration } from "../../types_data/Declaration";
 import { apiEndpoints } from "@/services";
 
 function useDeclaration() {
   //Declaration des variables d'etats pour les declarations et les filtres
   const [declarations, setDeclarations] = useState<Declaration[]>([]);
+  //Declaration des variables d'etats pour les declarations filtrés
+  const [filterdeclarations, setFilterDeclarations] = useState<Declaration[]>([]);
   //Declaration du uestate pour le trie à l'inverse des declarations
   const [orderStatus, setOrderStatus] = useState(1);
   const [orderDate, setOrderDate] = useState(1);
+
+  //Declaration d'une reference pour les filter 
+  const filterRef=useRef<any>(0);
 
   //Creation de la methode sortByStatus
 
@@ -53,6 +58,26 @@ function useDeclaration() {
     //On eclate le contenu de la destructuration
     setDeclarations([...sortDeclaration]);
   };
+  
+  const filterByref=()=>{
+    const filter=filterRef.current.value || "";
+    if (filter.length>=3) {
+     const filteredDeclaration= declarations.filter(item=>{
+        const {child:{firstName,lastName}}=item;
+        return (
+          firstName.toLowerCase().indexOf(filter.toLowerCase()) > -1 ||
+          lastName.toLowerCase().includes(filter.toLowerCase())
+        );
+      })
+      setFilterDeclarations([...filteredDeclaration]);
+
+    }
+    else {
+      setFilterDeclarations([...declarations]);
+    }
+    
+    
+  }
 
   //Recuperation des declarations depuis le backend (simulee ici avec un useEffect et une fonction de mock)
   const fetchDeclarations = async () => {
@@ -62,7 +87,7 @@ function useDeclaration() {
   useEffect(() => {
     fetchDeclarations();
   }, []);
-  return { declarations, sortByStatus, sortByDate };
+  return { declarations, sortByStatus, sortByDate,filterByref,filterRef,filterdeclarations };
 }
 
 export { useDeclaration };
