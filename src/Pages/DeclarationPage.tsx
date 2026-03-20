@@ -4,6 +4,7 @@ import { formDate } from "@/Utils/Date";
 import type { Declaration } from "@/types_data/Declaration";
 import { useDeclaration } from "@/hooks/use-declarations/useDeclaration";
 import Declarations from "@/components/Declarations/Declarations";
+import { Link } from "react-router-dom";
 
 function DeclarationPage() {
   //Utilisation du hook personnalisé pour récupérer les declarations
@@ -41,7 +42,9 @@ function DeclarationPage() {
             />
           </label>
         </div>
-        <button className="btn btn-primary">Ajouter une déclaration</button>
+        <Link to="/private/declaration/new">
+          <button className="btn btn-primary">Ajouter une déclaration</button>
+        </Link>
       </div>
 
       <div className="bg-white shadow-md rounded-md">

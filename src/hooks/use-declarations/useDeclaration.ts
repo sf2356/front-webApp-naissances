@@ -72,7 +72,7 @@ function useDeclaration() {
       setFilterDeclarations([...filteredDeclaration]);
 
     }
-    else {
+    else   {
       setFilterDeclarations([...declarations]);
     }
     
@@ -83,11 +83,21 @@ function useDeclaration() {
   const fetchDeclarations = async () => {
     const data = await apiEndpoints("declarations");
     setDeclarations(data);
+    setFilterDeclarations(data);
   };
+
   useEffect(() => {
     fetchDeclarations();
   }, []);
-  return { declarations, sortByStatus, sortByDate,filterByref,filterRef,filterdeclarations };
+
+  return {
+    declarations,
+    sortByStatus,
+    sortByDate,
+    filterByref,
+    filterRef,
+    filterdeclarations,
+  };
 }
 
 export { useDeclaration };
