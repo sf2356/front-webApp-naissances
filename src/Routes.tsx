@@ -4,6 +4,7 @@ import ErrorPage from '@/error-page';
 import PrivateLayouts from '@/Layouts/PrivateLayouts';
 import DeclarationPage from '@/Pages/DeclarationPage';
 import Home from '@/Pages/Home';
+import CreateDeclarationPage from './Pages/CreateDeclarationPage';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,12 @@ const router = createBrowserRouter([
       {
         path: "declaration",
         element: <DeclarationPage />,
+        
+      },
+     {
+        path: "declaration/new",
+        element: <CreateDeclarationPage />,
+        
       },
     ],
       },
