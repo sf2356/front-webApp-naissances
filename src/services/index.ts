@@ -18,6 +18,18 @@ const response=await fetch(`${host}/${url}`,
 return response
 }
 
+const update=async (url:string,id:string,body:any)=>{
+    const response=await fetch(`${host}/${url}/${id}`,
+        {headers: {
+        'Content-Type': 'application/json','accept':'application/json'
+    },
+    body: JSON.stringify(body), 
+    method: "PUT",
+});
+return response
+}
 
 
-export { apiEndpoints,create }
+
+
+export { apiEndpoints,create,update }

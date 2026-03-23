@@ -19,7 +19,7 @@ function ActionButton(props: Props) {
       >
       <option value="">Selectionner</option>
       {STATUS.map((item: string) => (
-        <option key={item} value={item}>
+        <option key={`${id}-${item}`} value={item}>
           {getStatusTextFrench(item)}
         </option>
       ))}

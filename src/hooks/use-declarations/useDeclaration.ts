@@ -92,9 +92,23 @@ function useDeclaration() {
 
   //Fonction pour la modification du status d'une declaration 
 
-  const updateStatus=(data:{id:string,status:string})=>{
-    console.log(data)
-  }
+  const updateStatus = (data: { id: string; status: string }) => {
+  setDeclarations(prev =>
+    prev.map(item =>
+      item.id === data.id
+        ? { ...item, status: data.status }
+        : item
+    )
+  );
+
+  setFilterDeclarations(prev =>
+    prev.map(item =>
+      item.id === data.id
+        ? { ...item, status: data.status }
+        : item
+    )
+  );
+};
 
   return {
     declarations,
