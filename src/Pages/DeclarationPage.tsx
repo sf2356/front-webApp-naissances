@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 function DeclarationPage() {
   //Utilisation du hook personnalisé pour récupérer les declarations
-  const { declarations, sortByStatus, sortByDate,filterByref,filterRef,filterdeclarations } = useDeclaration();
+  const { declarations, sortByStatus, sortByDate,filterByref,filterRef,filterdeclarations,updateStatus } = useDeclaration();
   return (
     <>
       <div className="bg-white shadow-md rounded-md flex flex-row justify-between items-center p-4">
@@ -53,6 +53,7 @@ function DeclarationPage() {
           declarations={filterdeclarations || declarations}
           sortBystatus={sortByStatus}
           sortByDate={sortByDate}
+          updateStatus={updateStatus}
         />
       </div>
     </>

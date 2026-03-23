@@ -26,7 +26,8 @@ const getStatusTextFrench = (status: string) => {
         default:
             return '';
     }
+
 };
+const STATUS=["NEW","VALIDATED","REJECTED","ON_GOING"]
 
-
-export { getStatusColor, getStatusTextFrench };
+export { getStatusColor, getStatusTextFrench,STATUS };

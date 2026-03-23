@@ -6,11 +6,12 @@ type Props={
     declarations: Declaration[]
     sortBystatus:()=> void
     sortByDate:()=>void
+    updateStatus:(props:any)=>void
 }
 
 function Declarations(props: Props) {
     //Destructuration des declarations passées en props
-    const { declarations,sortBystatus,sortByDate } = props;
+    const { declarations,sortBystatus,sortByDate,updateStatus } = props;
   return (
     <>
       <article className="grid grid-cols-12 align-center p-4 font-bold">
@@ -43,6 +44,7 @@ function Declarations(props: Props) {
           declaration={declaration}
           index={index}
           key={declaration.id}
+          action={updateStatus}
         />
       ))}
     </>

@@ -4,5 +4,7 @@ export type Profile = {
     firstName: string,
     lastName: string,
     birthDate?: string,
-    birthDateTime?:string
+    birthDateTime?:string,
+    email:string,
+    phone:string
 }

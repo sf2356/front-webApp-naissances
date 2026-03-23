@@ -90,6 +90,12 @@ function useDeclaration() {
     fetchDeclarations();
   }, []);
 
+  //Fonction pour la modification du status d'une declaration 
+
+  const updateStatus=(data:{id:string,status:string})=>{
+    console.log(data)
+  }
+
   return {
     declarations,
     sortByStatus,
@@ -97,6 +103,7 @@ function useDeclaration() {
     filterByref,
     filterRef,
     filterdeclarations,
+    updateStatus
   };
 }
 
