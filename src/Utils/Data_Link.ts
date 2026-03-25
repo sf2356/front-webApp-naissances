@@ -1,4 +1,5 @@
 import Declarations from "@/components/Declarations/Declarations";
+import type { Declaration } from "@/types_data/Declaration";
 
 const DATA_LINK = [
     {
@@ -19,8 +20,19 @@ const DATA_LINK = [
     }
 ];
 
+type State = {
+  declarations: Declaration[];
+  filterDeclarations:Declaration[]
+};
+
+const initialState: State = {
+  declarations: [],
+  filterDeclarations:[]
+};
+
+
 //Declaration de la variable UPDATE_DECLARATION Pour la rendre public 
 const UPDATE_DECLARATION="UPDATE_DECLARATION";
 const INITIAL_STATE={Declarations: []};
 
-export {DATA_LINK,UPDATE_DECLARATION,INITIAL_STATE};
+export {DATA_LINK,UPDATE_DECLARATION,INITIAL_STATE,initialState};

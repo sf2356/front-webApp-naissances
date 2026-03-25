@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import type { Declaration } from "../../types_data/Declaration";
 import { apiEndpoints } from "@/services";
+import ApplicationReducer from "@/components/context/ApplicationReducer";
+import { initialState } from "@/Utils/Data_Link";
 
 function useDeclaration() {
   //Declaration des variables d'etats pour les declarations et les filtres
@@ -10,6 +12,8 @@ function useDeclaration() {
   //Declaration du uestate pour le trie à l'inverse des declarations
   const [orderStatus, setOrderStatus] = useState(1);
   const [orderDate, setOrderDate] = useState(1);
+
+  const [state, dispatch] = useReducer(ApplicationReducer, initialState);
 
   //Declaration d'une reference pour les filter 
   const filterRef=useRef<any>(0);
@@ -93,25 +97,14 @@ function useDeclaration() {
   //Fonction pour la modification du status d'une declaration 
 
   const updateStatus = (data: { id: string; status: string }) => {
-  setDeclarations(prev =>
-    prev.map(item =>
-      item.id === data.id
-        ? { ...item, status: data.status }
-        : item
-    )
-  );
-
-  setFilterDeclarations(prev =>
-    prev.map(item =>
-      item.id === data.id
-        ? { ...item, status: data.status }
-        : item
-    )
-  );
+  dispatch({
+    type: "UPDATE_STATUS",
+    payload: data
+  });
 };
 
   return {
-    declarations,
+    declarations: state.declarations,
     sortByStatus,
     sortByDate,
     filterByref,

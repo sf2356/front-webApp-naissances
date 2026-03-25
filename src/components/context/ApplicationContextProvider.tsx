@@ -1,8 +1,6 @@
 import { useDeclaration } from '@/hooks/use-declarations/useDeclaration';
 import type { Declaration } from '@/types_data/Declaration'
-import React, { useReducer, useState } from 'react'
-import { ApplicationReducer } from './ApplicationReducer';
-import { INITIAL_STATE } from '@/Utils/Data_Link';
+import React from 'react'
 
 //Creation des types pour le context 
 type ContextType = {
@@ -20,7 +18,6 @@ type ContextType = {
 //Creation du contexte 
 export const ApplicationContext=React.createContext<ContextType|null>(null);
 
-const [state, dispatch] = useReducer(ApplicationReducer, INITIAL_STATE);
 function ApplicationContextProvider({children}:{children:React.ReactNode}) {
     //Reutilisation du hook useDeclaration
     const declarationData=useDeclaration();
