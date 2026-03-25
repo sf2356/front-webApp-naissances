@@ -1,14 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getStatusColor, getStatusTextFrench } from "@/Utils/Actions";
 import { formDate } from "@/Utils/Date";
 import type { Declaration } from "@/types_data/Declaration";
 import { useDeclaration } from "@/hooks/use-declarations/useDeclaration";
 import Declarations from "@/components/Declarations/Declarations";
 import { Link } from "react-router-dom";
+import { ApplicationContext } from "@/components/context/ApplicationContextProvider";
 
 function DeclarationPage() {
+  //Appel du context
+  const context=useContext(ApplicationContext)
+  if (!context) throw new Error("Context non disponible");
   //Utilisation du hook personnalisé pour récupérer les declarations
-  const { declarations, sortByStatus, sortByDate,filterByref,filterRef,filterdeclarations,updateStatus } = useDeclaration();
+  const { 
+    declarations,
+    sortByStatus,
+    sortByDate,
+    filterByref,
+    filterRef,
+    filterdeclarations,
+    updateStatus
+   } = context;
   return (
     <>
       <div className="bg-white shadow-md rounded-md flex flex-row justify-between items-center p-4">
@@ -50,10 +62,6 @@ function DeclarationPage() {
       <div className="bg-white shadow-md rounded-md">
         {/* Recuperations des declarations pour affichage  */}
         <Declarations
-          declarations={filterdeclarations || declarations}
-          sortBystatus={sortByStatus}
-          sortByDate={sortByDate}
-          updateStatus={updateStatus}
         />
       </div>
     </>

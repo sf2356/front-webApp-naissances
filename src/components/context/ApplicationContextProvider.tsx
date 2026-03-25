@@ -1,31 +1,31 @@
+import { useDeclaration } from '@/hooks/use-declarations/useDeclaration';
 import type { Declaration } from '@/types_data/Declaration'
-import React, { useState } from 'react'
+import React, { useReducer, useState } from 'react'
+import { ApplicationReducer } from './ApplicationReducer';
+import { INITIAL_STATE } from '@/Utils/Data_Link';
 
-//Creation d'un type pour recuperer les données de state 
+//Creation des types pour le context 
+type ContextType = {
+  declarations: Declaration[];
+  filterdeclarations: Declaration[];
+  sortByStatus: () => void;
+  sortByDate: () => void;
+  filterByref: () => void;
+  filterRef: any;
+  updateStatus: (data: { id: string; status: string }) => void;
+  //updateDeclaration:(declarations:Declaration[]) => void
+};
 
-type StateData={
-declarations:Declaration[]
-}
-
-//Creation du type pour les proprietés du context
-type Props ={
-    state:StateData
-    updateDeclarations:(declarations:Declaration[])=> void 
-    //Nous pouvons ici declarer tout nos object pour les utiliser au besoin 
-    //ex:updateDemandes ou bien d'autres .
-}
-
+//Creation du context 
 //Creation du contexte 
-export const ApplicationContext=React.createContext<Props>({} as Props)
+export const ApplicationContext=React.createContext<ContextType|null>(null);
 
-function ApplicationContextProvider({children}:any) {
-  const [state, setState] = useState<StateData>({declarations:[]});
-  const updateDeclarations = (declarations: Declaration[]) => {
-    setState((current) => ({ ...current, state: declarations }));
-
-  };
+const [state, dispatch] = useReducer(ApplicationReducer, INITIAL_STATE);
+function ApplicationContextProvider({children}:{children:React.ReactNode}) {
+    //Reutilisation du hook useDeclaration
+    const declarationData=useDeclaration();
   return (
-    <ApplicationContext.Provider value={{ state, updateDeclarations }}>
+    <ApplicationContext.Provider value={declarationData}>
         {children}
     </ApplicationContext.Provider>
   );
